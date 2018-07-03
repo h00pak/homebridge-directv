@@ -100,7 +100,11 @@ DirectvSTBAccessory.prototype = {
 						remote.getTuned(that.clientAddr, function (err, response) {
 							if (!err) {
 								that.log.debug('DTV location %s current channel is %d', that.location, parseInt(response.major));
-								callback(null, parseInt(response.major));
+								try{
+									callback(null, parseInt(response.major));
+								} catch (e) {
+									
+								}
 							} else {
 								that.log.debug('Unable to call for current channel at DTV location %s.', that.location);
 								callback(null, parseInt("0"));
